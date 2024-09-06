@@ -2,7 +2,7 @@ services:
   webserver:
     build: .
     image: php:apache
-    container_name: WEB_Server
+    container_name: webserver
     ports:
       - "80:80"
     volumes:
@@ -12,7 +12,7 @@ services:
 
   mariadb:
     image: mariadb:latest
-    container_name: DB_Server
+    container_name: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: hostapp
@@ -20,10 +20,10 @@ services:
       MYSQL_PASSWORD: user
     volumes:
       - db_data:/var/lib/mysql
-
+    
   phpmyadmin:
     image: phpmyadmin:latest
-    container_name: DB_Control
+    container_name: phpmyadmin
     environment:
       PMA_HOST: mariadb
       MYSQL_ROOT_PASSWORD: root
