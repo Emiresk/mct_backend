@@ -1,0 +1,17 @@
+# Enable RewriteEngine
+RewriteEngine on
+
+# Rewrite start point
+RewriteBase /
+
+# Skip applying rules to listed directories
+RewriteCond %{REQUEST_URI} !^/?(realtime|style|upload)
+
+# In case when file is missing, then going to next rule
+RewriteCond %{REQUEST_FILENAME}% !-f
+
+# In case when directory is missing, then going to next rule
+RewriteCond %{REQUEST_FILENAME}% !-d
+
+# Main rewrite rule. All requests redirect to index.php file
+RewriteRule ^(.*)$ index.php
